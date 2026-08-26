@@ -195,9 +195,9 @@
     </form>
     <div class="rsvp-done" id="rsvpDone">
       <svg viewBox="0 0 24 24" fill="none" stroke="var(--terracotta)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
-      <p>응답이 접수됐어요</p>
-      <span>당일 뵙겠습니다</span>
-      <span style="display:block;margin-top:4px">신청 내용을 문자로 보내드렸어요</span>
+      <p id="doneTitle">응답이 접수됐어요</p>
+      <span id="doneSub">당일 뵙겠습니다</span>
+      <span id="doneNote" style="display:block;margin-top:4px">신청 내용을 문자로 보내드렸어요</span>
       <button type="button" class="submit-btn" style="margin-top:20px" onclick="location.reload()">처음으로</button>
       <p class="check-status-link" style="margin-top:14px" onclick="openLookup()">예약 확인하기</p>
     </div>
@@ -255,6 +255,13 @@
       })
     }, 7000).then(function (res) {
       if (res.ok) {
+        if (attendVal === "불참") {
+          document.getElementById("doneTitle").textContent = "함께하지 못 해 아쉬운 마음입니다";
+          document.getElementById("doneSub").textContent = "혹시, 추후 일정이 변경되신다면 다시 신청해 주세요. 감사합니다.";
+        } else {
+          document.getElementById("doneTitle").textContent = "참여 신청이 완료됐어요";
+          document.getElementById("doneSub").textContent = "귀한 시간임에도 함께해 주셔서 감사드립니다. 당일 뵙겠습니다";
+        }
         document.getElementById("rsvpForm").style.display = "none";
         document.getElementById("rsvpDone").style.display = "block";
       } else {
