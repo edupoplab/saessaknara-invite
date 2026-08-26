@@ -386,6 +386,8 @@
     refreshCapacityNote();
   }
 
+  var CAPACITY_TOTAL = { "졸업생": 40, "오픈데이": 60 };
+
   function refreshCapacityNote() {
     var note = document.getElementById("capacityNote");
     var isProspective = state.category === PROSPECTIVE;
@@ -396,9 +398,10 @@
         if (!res.ok || !res.capacity) { note.textContent = ""; return; }
         var left = isProspective ? res.capacity["오픈데이"] : res.capacity["졸업생"];
         var label = isProspective ? "입학 예정 가족" : "졸업생";
+        var total = isProspective ? CAPACITY_TOTAL["오픈데이"] : CAPACITY_TOTAL["졸업생"];
         if (typeof left !== "number") { note.textContent = ""; return; }
         note.textContent = left > 0
-          ? (label + " " + left + "자리 남음 (정원 50명, 성인 기준)")
+          ? (label + " " + left + "자리 남음 (정원 " + total + "명, 성인+형제자매 기준)")
           : (label + " 정원이 가득 찼어요. 신청 시 대기자로 등록돼요.");
       })
       .catch(function () { note.textContent = ""; });
