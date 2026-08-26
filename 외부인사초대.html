@@ -298,8 +298,7 @@
         if (result.attend === "불참") {
           box.innerHTML = '<div class="lookup-found"><b>' + name + '</b> 님은 <b>불참</b>으로 응답하셨어요.</div>';
         } else {
-          box.innerHTML = '<div class="lookup-found"><b>' + name + '</b> 님은 <b>참석</b>으로 응답하셨어요.' +
-            (result.message ? '<br>응원 메시지: ' + result.message : '') + '</div>';
+          box.innerHTML = '<div class="lookup-found"><b>' + name + '</b> 님, 신청이 완료되었습니다.<br>당일, 10시 시작이니, 조금 일찍 도착해 주세요. 감사합니다.</div>';
         }
       })
       .catch(function () {

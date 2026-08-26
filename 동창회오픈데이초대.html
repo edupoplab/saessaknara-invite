@@ -313,7 +313,7 @@
     <p id="doneSub">10월 24일, 새싹나라에서 만나요 🎉</p>
     <p id="doneNote" style="margin-top:6px"></p>
     <button class="btn-primary" style="margin-top:28px" onclick="location.reload()">처음으로</button>
-    <p class="check-status-link" onclick="openLookup()">예약 확인하기</p>
+    <p class="check-status-link" style="margin-top:20px" onclick="openLookup()">예약 확인하기</p>
   </section>
 
 </div>
@@ -512,7 +512,8 @@
           return;
         }
         var statusLine = result.status === "대기" ? ("<br>현재 <b>대기 " + result.seq + "번</b>이에요. 자리가 나면 안내드릴게요.") : "<br><b>확정</b>되었어요.";
-        box.innerHTML = '<div class="lookup-found"><b>' + name + '</b> 님(' + result.category + ')은 <b>' + result.timeslot + '</b> 시간대로 응답하셨어요.' + statusLine + '</div>';
+        var scheduleNote = result.status === "대기" ? "" : "<br><br>*13:30~14:30 식사 신청<br>*14:30~15:30 유치원 관람 및 놀이 체험";
+        box.innerHTML = '<div class="lookup-found"><b>' + name + '</b> 님(' + result.category + ')은 <b>' + result.timeslot + '</b> 시간대로 응답하셨어요.' + statusLine + scheduleNote + '</div>';
       })
       .catch(function () {
         box.innerHTML = '<div class="lookup-notfound">확인 중 오류가 발생했어요. 잠시 후 다시 시도해주세요.</div>';
